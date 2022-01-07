@@ -65,6 +65,11 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         $this->offsetSet($name,$value);
     }
 
+    public function hasItem(string $name):bool
+    {
+        return $this->offsetExists($name);
+    }
+
     public function add(mixed $data, mixed $value = null): void
     {
         if (is_array($data)) {
