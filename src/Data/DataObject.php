@@ -62,7 +62,7 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
 
     public function setItem(string $name,mixed $value):void
     {
-        $this->offsetSet($name,$value)
+        $this->offsetSet($name,$value);
     }
 
     public function add(mixed $data, mixed $value = null): void
