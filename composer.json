@@ -1,0 +1,19 @@
+{
+  "name": "aroadahead/poseidon-php-lib",
+  "description": "athena runner",
+  "minimum-stability": "dev",
+  "license": "BSD-3-Clause",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "yonatonreid",
+      "email": "me@aroadahead.com",
+      "homepage": "https://aroadahead.com/me"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "require": {},
+  "require-dev": {}
+}
