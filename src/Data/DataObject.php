@@ -50,6 +50,21 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         return array_diff_key($this -> data, array_flip($minus));
     }
 
+    public function removeItem(string $name):void
+    {
+        $this->offsetUnset($name);
+    }
+
+    public function getItem(string $name):mixed
+    {
+        return $this->offsetGet($name);
+    }
+
+    public function setItem(string $name,mixed $value):void
+    {
+        $this->offsetSet($name,$value)
+    }
+
     public function add(mixed $data, mixed $value = null): void
     {
         if (is_array($data)) {
