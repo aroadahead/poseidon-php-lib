@@ -3,7 +3,7 @@
 namespace Poseidon\Data;
 
 use ArrayIterator;
-use Bridge\Laminas\Filter\Word\CamelCaseToUnderscore;
+use Laminas\Filter\Word\CamelCaseToUnderscore;
 use http\Exception\InvalidArgumentException;
 use JetBrains\PhpStorm\Pure;
 use Traversable;
