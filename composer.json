@@ -15,5 +15,15 @@
     "sort-packages": true
   },
   "require": {},
-  "require-dev": {}
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "Poseidon\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PoseidonTest\\": "tests/"
+    }
+  }
 }
