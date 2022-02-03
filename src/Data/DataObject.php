@@ -40,6 +40,11 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         }
     }
 
+    public function get(string $key):mixed
+    {
+        return $this->offsetGet($key);
+    }
+
     public function keys(): array
     {
         return array_keys($this -> data);
