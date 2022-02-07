@@ -12,6 +12,7 @@ use Laminas\Filter\Word\CamelCaseToUnderscore;
 use Traversable;
 use function array_flip;
 use function array_key_exists;
+use function array_values;
 use function array_walk;
 use function is_array;
 use function is_scalar;
@@ -37,6 +38,21 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         if (count($data)) {
             $this -> add($data);
         }
+    }
+
+    public function toArray(array $keys = [], array $keysToIgnore = [], bool $removeKeys = false): array
+    {
+        if (empty($keys)) {
+            return $this -> all($keysToIgnore);
+        }
+        $result = [];
+        foreach ($keys as $key) {
+            $result[$key] = $this -> get($key);
+        }
+        if ($removeKeys) {
+            return array_values($result);
+        }
+        return $result;
     }
 
     public function set(string $key, mixed $data): void
