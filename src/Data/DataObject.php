@@ -2,30 +2,29 @@
 
 namespace Poseidon\Data;
 
-use ArrayIterator;
-use Laminas\Filter\Word\CamelCaseToUnderscore;
-use http\Exception\InvalidArgumentException;
-use JetBrains\PhpStorm\Pure;
-use Traversable;
 use ArrayAccess;
+use ArrayIterator;
 use Countable;
+use http\Exception\InvalidArgumentException;
 use IteratorAggregate;
-
+use JetBrains\PhpStorm\Pure;
+use Laminas\Filter\Word\CamelCaseToUnderscore;
+use Traversable;
 use function array_flip;
-use function substr;
-use function trim;
 use function array_key_exists;
 use function array_walk;
 use function is_array;
 use function is_scalar;
 use function spl_object_hash;
+use function substr;
+use function trim;
 
 class DataObject implements ArrayAccess, Countable, IteratorAggregate
 {
-    private const CALL_GET    = 'get';
-    private const CALL_SET    = 'set';
-    private const CALL_HAS    = 'has';
-    private const CALL_UNSET  = 'uns';
+    private const CALL_GET = 'get';
+    private const CALL_SET = 'set';
+    private const CALL_HAS = 'has';
+    private const CALL_UNSET = 'uns';
     private const CALL_REMOVE = 'rem';
 
     protected array $data = [];
@@ -40,9 +39,14 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         }
     }
 
-    public function get(string $key):mixed
+    public function set(string $key, mixed $data): void
     {
-        return $this->offsetGet($key);
+        $this -> offsetSet($key, $data);
+    }
+
+    public function get(string $key): mixed
+    {
+        return $this -> offsetGet($key);
     }
 
     public function keys(): array
@@ -55,24 +59,24 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
         return array_diff_key($this -> data, array_flip($minus));
     }
 
-    public function removeItem(string $name):void
+    public function removeItem(string $name): void
     {
-        $this->offsetUnset($name);
+        $this -> offsetUnset($name);
     }
 
-    public function getItem(string $name):mixed
+    public function getItem(string $name): mixed
     {
-        return $this->offsetGet($name);
+        return $this -> offsetGet($name);
     }
 
-    public function setItem(string $name,mixed $value):void
+    public function setItem(string $name, mixed $value): void
     {
-        $this->offsetSet($name,$value);
+        $this -> offsetSet($name, $value);
     }
 
-    public function hasItem(string $name):bool
+    public function hasItem(string $name): bool
     {
-        return $this->offsetExists($name);
+        return $this -> offsetExists($name);
     }
 
     public function add(mixed $data, mixed $value = null): void
