@@ -22,6 +22,7 @@ use function array_flip;
 use function array_key_exists;
 use function array_values;
 use function array_walk;
+use function array_walk_recursive;
 use function is_array;
 use function is_scalar;
 use function spl_object_hash;
@@ -108,6 +109,21 @@ class DataObject implements ArrayAccess, Countable, IteratorAggregate
     public function has(string $key): bool
     {
         return $this -> offsetExists($key);
+    }
+
+    public function flush(): void
+    {
+        array_walk_recursive($this -> data, function ($item, $key) {
+            $this -> removeItem($key);
+        });
+    }
+
+    public function exchangeArray(array $data): void
+    {
+        $this -> flush();
+        array_walk($data, function ($item, $key) {
+            $this -> set($key, $item);
+        });
     }
 
     public function getOrFail(string $key): mixed
