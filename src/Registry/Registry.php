@@ -6,6 +6,11 @@ use Zend_Exception;
 
 class Registry extends \Zend_Registry
 {
+    /**
+     * Registry object provides storage for shared objects.
+     * @var Registry
+     */
+    private static ?Registry $registry = null;
 
     /**
      * Retrieves the default registry instance.
